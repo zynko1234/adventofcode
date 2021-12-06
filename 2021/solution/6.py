@@ -1,5 +1,5 @@
 def solve(in_list):
-    ansA = 0
+    ansA = None
     ansB = None
 
     normalized_input = normalize_input(in_list)
