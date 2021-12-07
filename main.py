@@ -3,7 +3,7 @@ import os
 
 # Change these to toggle puzzle inputs and solutions.
 YEAR = 2021
-PUZZLE_NUM = 2
+PUZZLE_NUM = 3
 
 # Format strings.
 PUZZLE_FILE = '{0}/solution'.format(YEAR)

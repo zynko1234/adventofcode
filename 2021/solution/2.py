@@ -1,6 +1,3 @@
-from typing import Mapping
-
-
 def solve(input):
     ansA = None
     ansB = None
