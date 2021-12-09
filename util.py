@@ -27,18 +27,39 @@ def replace_char(in_str, in_idx, in_subst):
     return out_string
 
 
-def remove_dupe(list:input) -> list:
+def remove_dupe(input: list) -> list:
     ''' 
     Returns a list populated by the input lists elements with no two elements te same.
     '''
 
     return list(dict.fromkeys(input))
 
-def sort_and_remove_dup(list:input) -> list:
+def sort_and_remove_dup(input: list) -> list:
     '''
     Returns a sorted version of the input list, with all duplicate elements removed.
     '''
 
-    output = list[:]
+    output = input[:]
     output = remove_dupe(output)
-    return output.sort() 
+    return output.sort()
+
+def gen_2d_array_list(i: int, j: int) -> list:
+    output = i*[list()]
+
+    for entry in output:
+        tmp = j*[0]
+        entry.append(tmp)
+
+    return output
+
+def get_min(a: int, b: int) -> int:
+    if a > b:
+        return b
+    else:
+        return a
+
+def get_max(a: int, b: int) -> int:
+    if a > b:
+        return a
+    else:
+        return b
