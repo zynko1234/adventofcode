@@ -1,3 +1,4 @@
+import copy
 import constants
 
 
@@ -76,7 +77,7 @@ def remove_duplicate_tuples(input):
    return prune_list
 
 def find_max_three(input):
-   clone_list = input[:]
+   clone_list = copy.deepcopy(input)
    
    if len(clone_list) <= 3:
       return clone_list

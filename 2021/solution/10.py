@@ -1,3 +1,4 @@
+import copy
 import constants
 import util
 import math 
@@ -20,7 +21,7 @@ def solve(input):
 
 
 def normalize_input(input):
-    output = input[:]
+    output = copy.deepcopy(input)
 
     return output
 

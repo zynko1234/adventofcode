@@ -1,3 +1,4 @@
+import copy
 from os import curdir
 from util import sort_and_remove_dup
 
@@ -45,7 +46,7 @@ def shortest_distance(input, compound):
     output = 0
 
     # Sort and remove duplicates.
-    sort_input = input[:]
+    sort_input = copy.deepcopy(input)
     sort_input.sort()
     sort_input = list(dict.fromkeys(sort_input))
     

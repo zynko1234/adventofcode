@@ -1,4 +1,5 @@
 import constants
+import copy
 
 def read_file(in_file: str) -> list:
     out_list = []
@@ -39,7 +40,7 @@ def sort_and_remove_dup(input: list) -> list:
     Returns a sorted version of the input list, with all duplicate elements removed.
     '''
 
-    output = input[:]
+    output = copy.deepcopy(input)
     output = remove_dupe(output)
     return output.sort()
 

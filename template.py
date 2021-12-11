@@ -3,6 +3,7 @@
 import constants
 import util
 
+
 def solve(input):
     ansA = None
     ansB = None
@@ -15,19 +16,20 @@ def solve(input):
 
 
 def normalize_input(input):
-   output = []
+    output = []
 
-   return output
+    return output
 
 
 def solutionA(input):
-   output = 0
+    output = 0
 
-   return output
+    return output
+
 
 def solutionB(input):
-   output = 0
+    output = 0
 
-   return output
+    return output
 
 '''

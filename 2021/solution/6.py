@@ -1,3 +1,6 @@
+import copy
+
+
 def solve(in_list):
     ansA = None
     ansB = None
@@ -8,19 +11,19 @@ def solve(in_list):
     ansB = simulate_population(normalized_input, 256)
     return ansA, ansB
 
-def normalize_input(in_input):
+def normalize_input(input):
     output = []
 
-    split_input = in_input[0].split(',')
+    split_input = input[0].split(',')
 
     for entry in split_input:
         output.append(int(entry))
 
     return output        
 
-def simulate_population(in_list, days):
+def simulate_population(input, days):
     count = 0
-    fish_list = list(in_list).copy()
+    fish_list = copy.deepcopy(input)
     pidgeon_list = 9*[0]
     
     for entry in fish_list:
