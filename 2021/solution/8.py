@@ -193,8 +193,8 @@ class Wiring(object):
         ######## Solve for B
 
         composite_set = set(self.one + self.d)
-        set9 = set(self.four)
-        diff = list(composite_set.symmetric_difference(set9))
+        set4 = set(self.four)
+        diff = list(composite_set.symmetric_difference(set4))
         self.b = diff[0]
 
         ######## Derive 2, 3, and 5

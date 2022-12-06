@@ -1,3 +1,6 @@
+import copy
+
+
 def solve(input):
     ansA = None
     ansB = None
@@ -87,7 +90,7 @@ def calculate_life_support(input):
     mask = 0b100000000000
     #bin()
 
-    temp_list = input[:]
+    temp_list = copy.deepcopy(input)
 
     for i in range(12):
         value = gamma >> (12-i)
