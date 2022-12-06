@@ -20,7 +20,6 @@ def main():
 
     input_list = util.read_file('{0}/input/{1}'.format('year_' + str(YEAR), str(PUZZLE_NUM)) + '.txt')
     answerA, answerB = current_solution.solve(input_list)
-    # answerA, answerB = curr_puzzle.solution_5.solve(input_list)
 
     print(ANS_FMT.format(YEAR, PUZZLE_NUM, 'A', answerA))
     print(ANS_FMT.format(YEAR, PUZZLE_NUM, 'B', answerB))
