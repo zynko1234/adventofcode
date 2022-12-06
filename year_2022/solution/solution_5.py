@@ -105,7 +105,7 @@ def normalize_input(input):
     # Normalize the input stacks.
     for line in stack_domain:
         for i in range(len(line)):
-            if line[i] is ' ':
+            if line[i] == ' ':
                 continue
             else:
                 stacks[i].append(line[i])
