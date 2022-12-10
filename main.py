@@ -3,7 +3,7 @@ import os
 
 # Change these to toggle puzzle inputs and solutions.
 ADVENT_YEAR = 2022
-PUZZLE_NUM = 9
+PUZZLE_NUM = 10
 
 # Format strings.
 PUZZLE_FILE = '{0}/solution'.format(ADVENT_YEAR)
@@ -19,7 +19,7 @@ def main():
     solution_module = f'year_{ADVENT_YEAR}.solution.solution_{PUZZLE_NUM}'
     current_solution = __import__(solution_module, fromlist=solution_module)
     input_list = util.read_file('{0}/input/{1}'.format('year_' + str(ADVENT_YEAR), str(PUZZLE_NUM)) + '.txt')
-    
+
     print(f'Running Solution Set {PUZZLE_NUM} from Advent {ADVENT_YEAR}')
     answerA, answerB = current_solution.solve(input_list)
     print(ANS_FMT.format(PUZZLE_NUM, 'A', answerA))
