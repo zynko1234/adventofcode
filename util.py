@@ -145,3 +145,42 @@ def pad_lines(input: list, add_length: int, top: bool, pad_value = 0):
             output.append(pad_list)
 
     return output
+
+def print_progress_bar(i: int, max_i: int):
+    last_iteration_flag = (i == (max_i - 1))
+    i_prog = int(100 * ((i + 1)/max_i))
+    bar = progress_bar_str(i_prog)
+    progress_msg = 'Calculating {0}'.format(bar)
+    
+    # Dynamically size carriage return length.
+    line_end = (' ' * (1 + len(progress_msg))) + '\r'
+    
+    if last_iteration_flag:
+        line_end = '\n'
+            
+    print(progress_msg, end=line_end)
+
+def print_image_progress_bar(i: int, j: int, max_i: int, max_j:int):
+    last_iteration_flag = (i == (max_i - 1)) and (j == (max_j - 1))
+    i_prog = int(100 * ((i + 1)/max_i))
+    j_prog = int(100 * ((j + 1)/max_j))
+    parent_bar = progress_bar_str(i_prog)
+    child_bar = progress_bar_str(j_prog)
+    progress_msg = 'Total {0} | This row {1}'.format(parent_bar, child_bar)   
+    
+    # Dynamically size carriage return length.
+    line_end = (' ' * (1 + len(progress_msg))) + '\r'
+    
+    if last_iteration_flag:
+        line_end = '\n'
+            
+    print(progress_msg, end=line_end)   
+
+def progress_bar_str(percent: int, resolution: int=32, glyph:str='◼'):
+    working_resolution = min(resolution, 100)
+    working_percent = max(percent, 1)
+    complete = int(resolution * (working_percent/100))
+    ret = ''.ljust(complete, glyph)
+    ret = ret.ljust(working_resolution, ' ')
+    percent_str = str(percent).rjust(3, ' ')
+    return f'---> {ret}] {percent_str}%'
