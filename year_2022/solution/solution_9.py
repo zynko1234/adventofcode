@@ -91,9 +91,7 @@ class RopeMap(object):
         max_y_index = len(self.map) - 1
         max_x_index = len(self.map[0]) - 1
         diff = 0
-
-        # This check is necessary, if there is only one tail.
-        final_tail = (len(self.tails) == 1)
+        final_tail = False
 
         if direction == 'R':
             dest = self.head['x'] + length
@@ -106,13 +104,15 @@ class RopeMap(object):
                 self.head['x'] += 1
 
                 # Special case to move the first tale behind the head.
-                self.move_tail(self.head, self.tails[0], final_tail)
+                self.move_tail(self.head, self.tails[0], (len(self.tails) == 1))
 
                 for i in range(len(self.tails) - 1):
                     if i == (len(self.tails) - 2):
                         final_tail = True
 
                     self.move_tail(self.tails[i], self.tails[i + 1], final_tail)
+
+                final_tail = False
 
         elif direction == 'L':
             dest = self.head['x'] - length
@@ -130,13 +130,15 @@ class RopeMap(object):
                 self.head['x'] -= 1
 
                 # Special case to move the first tale behind the head.
-                self.move_tail(self.head, self.tails[0], final_tail)
+                self.move_tail(self.head, self.tails[0], (len(self.tails) == 1))
 
                 for i in range(len(self.tails) - 1):
                     if i == (len(self.tails) - 2):
                         final_tail = True
 
                     self.move_tail(self.tails[i], self.tails[i + 1], final_tail)
+
+                final_tail = False
 
         elif direction == 'D':
             dest = self.head['y'] + length
@@ -149,13 +151,15 @@ class RopeMap(object):
                 self.head['y'] += 1
 
                 # Special case to move the first tale behind the head.
-                self.move_tail(self.head, self.tails[0], final_tail)
+                self.move_tail(self.head, self.tails[0], (len(self.tails) == 1))
 
                 for i in range(len(self.tails) - 1):
                     if i == (len(self.tails) - 2):
                         final_tail = True
 
                     self.move_tail(self.tails[i], self.tails[i + 1], final_tail)
+
+                final_tail = False
 
         elif direction == 'U':
             dest = self.head['y'] - length
@@ -174,7 +178,7 @@ class RopeMap(object):
                 self.head['y'] -= 1
 
                 # Special case to move the first tale behind the head.
-                self.move_tail(self.head, self.tails[0], final_tail)
+                self.move_tail(self.head, self.tails[0], (len(self.tails) == 1))
 
                 for i in range(len(self.tails) - 1):
                     if i == (len(self.tails) - 2):
@@ -182,6 +186,7 @@ class RopeMap(object):
 
                     self.move_tail(self.tails[i], self.tails[i + 1], final_tail)
 
+                final_tail = False
 
     def move_tail(self, master, slave, final_tail):
         xdiff = master['x'] - slave['x']
