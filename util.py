@@ -17,7 +17,7 @@ def split_list(in_list, tuple_index):
 
 def sum_list(in_list):
     out_sum = 0
-    
+
     for i in range(len(in_list)):
         out_sum += in_list[i]
 
@@ -29,7 +29,7 @@ def replace_char(in_str, in_idx, in_subst):
 
 
 def remove_dupe(input: list) -> list:
-    ''' 
+    '''
     Returns a list populated by the input lists elements with no two elements te same.
     '''
 
@@ -88,7 +88,7 @@ def pad_zero(input: list, add_length: int, left: bool, pad_value = 0):
 
     if input is None:
         return None
-    
+
     if add_length < 1:
         return input
 
@@ -98,7 +98,7 @@ def pad_zero(input: list, add_length: int, left: bool, pad_value = 0):
     else:
         for i in range(add_length):
             output.append(pad_value)
-    
+
     return output
 
 def reverse_2d_list(input: list()):
@@ -118,13 +118,13 @@ def pad_lines(input: list, add_length: int, top: bool, pad_value = 0):
     the given pad values. The width of the padding will be the same as the 0th element of the given
     list.
     '''
-    
+
     output = copy.deepcopy(input)
     pad_list = None
 
     if input is None:
         return None
-    
+
     if add_length < 1:
         return input
 
@@ -132,7 +132,7 @@ def pad_lines(input: list, add_length: int, top: bool, pad_value = 0):
         # In case the caller is trying to pad the list with objects.
         if isinstance(pad_value, object):
             pad_list = len(input[0]) * [copy.deepcopy(pad_value)]
-        else: 
+        else:
             pad_list = len(input[0]) * [pad_value]
     else:
         pad_list = []
@@ -151,13 +151,13 @@ def print_progress_bar(i: int, max_i: int):
     i_prog = int(100 * ((i + 1)/max_i))
     bar = progress_bar_str(i_prog)
     progress_msg = 'Calculating {0}'.format(bar)
-    
+
     # Dynamically size carriage return length.
     line_end = (' ' * (1 + len(progress_msg))) + '\r'
-    
+
     if last_iteration_flag:
         line_end = '\n'
-            
+
     print(progress_msg, end=line_end)
 
 def print_image_progress_bar(i: int, j: int, max_i: int, max_j:int):
@@ -166,17 +166,17 @@ def print_image_progress_bar(i: int, j: int, max_i: int, max_j:int):
     j_prog = int(100 * ((j + 1)/max_j))
     parent_bar = progress_bar_str(i_prog)
     child_bar = progress_bar_str(j_prog)
-    progress_msg = 'Total {0} | This row {1}'.format(parent_bar, child_bar)   
-    
+    progress_msg = 'Total {0} | This row {1}'.format(parent_bar, child_bar)
+
     # Dynamically size carriage return length.
     line_end = (' ' * (1 + len(progress_msg))) + '\r'
-    
+
     if last_iteration_flag:
         line_end = '\n'
-            
-    print(progress_msg, end=line_end)   
 
-def progress_bar_str(percent: int, resolution: int=32, glyph:str='◼'):
+    print(progress_msg, end=line_end)
+
+def progress_bar_str(percent: int, resolution: int=16, glyph:str='◼'):
     working_resolution = min(resolution, 100)
     working_percent = max(percent, 1)
     complete = int(resolution * (working_percent/100))
@@ -184,3 +184,34 @@ def progress_bar_str(percent: int, resolution: int=32, glyph:str='◼'):
     ret = ret.ljust(working_resolution, ' ')
     percent_str = str(percent).rjust(3, ' ')
     return f'---> {ret}] {percent_str}%'
+
+def ldequeue(in_list: list):
+    ret = in_list[0]
+    in_list = in_list[1:]
+    return ret
+
+def is_divisible(number: int, factor: int) -> bool:
+    str_num = str(number)
+    end_index = len(str_num) - 1
+
+    rules = {
+        1: True,
+        2: (int(get_last(str_num)) % 2) == 0,
+        3: (digit_sum % 3) == 0,
+        4: (),
+        5: int(get_last(str_num)) == 5 or int(get_last(str_num)) == 0
+    }
+
+    return rules[factor]
+
+def get_last(collection):
+    return collection[len(collection):]
+
+def digit_sum(number: int) -> int:
+    ret = 0
+    str_number = str(number)
+
+    for value in str_number:
+        ret += int(value)
+
+    return ret

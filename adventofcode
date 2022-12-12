@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import click
+
+# # Format strings.
+# PUZZLE_FILE = '{0}/solution'.format(ADVENT_YEAR)
+# ANS_FMT = 'Answer to Puzzle #{0} part {1} is {2}'
+
+
+@click.command()
+@click.argument('year')
+@click.argument('puzzle_number')
+def run_solution(year, puzzle_number):
+
+    year_path = f'year_{year}'
+    solution_path = f'{year_path}/solution/solution_{puzzle_number}.py'
+    solution_module = f'{year_path}.solution.solution_{puzzle_number}'
+
+    if os.path.exists(year_path) == False:
+        print(f'ERROR: The year {year} has no puzzle solutions!')
+        return
+
+    if os.path.exists(solution_path) == False:
+        print(f'Error: That year has no solution for puzzle #{puzzle_number}!')
+        return
+
+    # Manually adds the submodules for the selected puzzle.
+    sys.path.append(os.path.abspath('./{0}'.format(solution_path)))
+
+    util = __import__('util')
+
+    # Dynamically load the solution file.
+    current_solution = __import__(solution_module, fromlist=solution_module)
+    input_list = util.read_file('{0}/input/{1}'.format('year_' + str(year), str(puzzle_number)) + '.txt')
+
+    print(f'Running Solution Set #{puzzle_number} from Advent {year}')
+    answerA, answerB = current_solution.solve(input_list)
+    print(f'The answer to Puzzle #{puzzle_number} part A is {answerA}')
+    print(f'The answer to Puzzle #{puzzle_number} part B is {answerB}')
+
+def test():
+    from util import is_divisible
+    print(is_divisible(100026, 2))
+
+if __name__ == '__main__':
+    test()
+    run_solution()
