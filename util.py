@@ -198,7 +198,7 @@ def is_divisible(number: int, factor: int) -> bool:
         1: True,
         2: (int(get_last(str_num)) % 2) == 0,
         3: (digit_sum % 3) == 0,
-        4: (),
+        # 4: (),
         5: int(get_last(str_num)) == 5 or int(get_last(str_num)) == 0
     }
 
