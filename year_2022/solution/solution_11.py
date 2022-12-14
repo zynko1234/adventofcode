@@ -1,6 +1,8 @@
 import copy
+import time
 
 from util import print_progress_bar
+from div import is_divisible
 
 class Monkey(object):
     def __init__(self) -> None:
@@ -17,7 +19,7 @@ def solve(in_list):
 
     monkeys = normalize_input(in_list)
 
-    ansA = partA(monkeys)
+    #ansA = partA(monkeys)
     ansB = partB(monkeys)
     return ansA, ansB
 
@@ -81,7 +83,7 @@ def partB(monkeys):
     mod_monkeys = copy.deepcopy(monkeys)
 
     for i in range(CYCLES_B):
-        print_progress_bar(i, CYCLES_B)
+        print(f'Current cycle: {i}')
         for monkey in mod_monkeys:
             for item in monkey.items:
                 mod_item = int(item)
@@ -96,10 +98,17 @@ def partB(monkeys):
                 elif monkey.operation[0] == '+':
                     mod_item += value
 
-                if (mod_item % monkey.test) == 0:
+                # if is_divisible(mod_item, 10):
+                #     mod_item = mod_item // 10
+                time_start = time.time()
+                if is_divisible(mod_item, monkey.test):
                     mod_monkeys[monkey.true_path].items.append(mod_item)
                 else:
                     mod_monkeys[monkey.false_path].items.append(mod_item)
+                elapsed = time.time()
+                digit_count = len(str(mod_item))
+                time_per_digit = elapsed / digit_count
+                print(f'Divided {monkey.test} with time/digit of {time_per_digit} at {digit_count} digits')
 
                 monkey.inspect_count += 1
 

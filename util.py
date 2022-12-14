@@ -189,29 +189,3 @@ def ldequeue(in_list: list):
     ret = in_list[0]
     in_list = in_list[1:]
     return ret
-
-def is_divisible(number: int, factor: int) -> bool:
-    str_num = str(number)
-    end_index = len(str_num) - 1
-
-    rules = {
-        1: True,
-        2: (int(get_last(str_num)) % 2) == 0,
-        3: (digit_sum % 3) == 0,
-        # 4: (),
-        5: int(get_last(str_num)) == 5 or int(get_last(str_num)) == 0
-    }
-
-    return rules[factor]
-
-def get_last(collection):
-    return collection[len(collection):]
-
-def digit_sum(number: int) -> int:
-    ret = 0
-    str_number = str(number)
-
-    for value in str_number:
-        ret += int(value)
-
-    return ret
