@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import copy
-import util
 
 # Constants.
 SIGNAL_CHECKS = [20, 60, 100, 140, 180, 220]

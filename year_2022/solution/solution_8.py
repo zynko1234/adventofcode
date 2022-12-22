@@ -1,6 +1,6 @@
 import copy
 
-import util
+from util.util import print_progress_bar
 
 LEFT_RIGHT = 0
 RIGHT_LEFT = 1
@@ -21,7 +21,7 @@ def partA(tree_img):
     ret = 0
 
     for i in range(len(tree_img)):
-        util.print_progress_bar(i, len(tree_img))
+        print_progress_bar(i, len(tree_img))
 
         for j in range(len(tree_img[i])):
             if edge_of_image(tree_img, i, j):

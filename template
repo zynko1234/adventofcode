@@ -1,5 +1,3 @@
-'''
-
 import constants
 import util
 
@@ -31,5 +29,3 @@ def solutionB(input):
     output = 0
 
     return output
-
-'''

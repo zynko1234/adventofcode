@@ -2,9 +2,6 @@
 # beginning of the file.
 from __future__ import annotations
 
-import copy
-import math
-
 def solve(in_list):
     ansA = None
     ansB = None

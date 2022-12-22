@@ -1,5 +1,3 @@
-import copy
-from re import L
 
 def solve(in_list):
     ansA = None

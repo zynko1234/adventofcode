@@ -4,6 +4,8 @@ import sys
 import os
 import click
 
+from util.util import read_file
+
 # # Format strings.
 # PUZZLE_FILE = '{0}/solution'.format(ADVENT_YEAR)
 # ANS_FMT = 'Answer to Puzzle #{0} part {1} is {2}'
@@ -33,16 +35,12 @@ def run_solution(year, puzzle_number):
 
     # Dynamically load the solution file.
     current_solution = __import__(solution_module, fromlist=solution_module)
-    input_list = util.read_file('{0}/input/{1}'.format('year_' + str(year), str(puzzle_number)) + '.txt')
+    input_list = read_file('{0}/input/{1}'.format('year_' + str(year), str(puzzle_number)) + '.txt')
 
     print(f'Running Solution Set #{puzzle_number} from Advent {year}')
     answerA, answerB = current_solution.solve(input_list)
     print(f'The answer to Puzzle #{puzzle_number} part A is {answerA}')
     print(f'The answer to Puzzle #{puzzle_number} part B is {answerB}')
-
-def test():
-    from util import is_divisible
-    print(is_divisible(100026, 2))
 
 if __name__ == '__main__':
     run_solution()

@@ -1,8 +1,8 @@
 import copy
 import time
 
-from util import print_progress_bar
-from div import is_divisible
+from util.util import print_progress_bar
+from util.div import is_divisible
 
 class Monkey(object):
     def __init__(self) -> None:
