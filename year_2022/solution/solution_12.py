@@ -1,5 +1,8 @@
 import copy
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 def solve(input):
     ansA = None
     ansB = None
@@ -50,8 +53,7 @@ def solutionA(input):
         if start_i != None and start_j != None:
             break
 
-    candidate_solutions = traverse_map(start_i, start_j, input, None)
-    ret = min(candidate_solutions)
+    ret = min(traverse_map(start_i, start_j, input, None))
 
     return ret
 
@@ -62,10 +64,10 @@ def solutionB(input):
     return ret
 
 
-def traverse_map (curr_i, curr_j, map, solutions=None):
-    # Lazy init the list of solutions.
-    if solutions is None:
-        solutions = []
+def traverse_map (curr_i, curr_j, map, solution=None):
+    # Lazy init the solution to the upper bound.
+    if solution is None:
+        solution = set()
 
     local_map = copy.deepcopy(map)
 
@@ -73,9 +75,8 @@ def traverse_map (curr_i, curr_j, map, solutions=None):
     curr_element = local_map[curr_i][curr_j]
 
     if curr_element[2] == 'E':
-        solutions.append(count_map(local_map))
-        print(f'Solution found! {solutions[-1]}')
-        return solutions
+        solution.add(count_map(local_map))
+        return solution
     else:
         # Else, mark that we've traversed this element
         local_map[curr_i][curr_j][1] = True
@@ -84,22 +85,21 @@ def traverse_map (curr_i, curr_j, map, solutions=None):
 
     # Check up and recurse.
     if is_traversable(curr_height, curr_i - 1, curr_j, local_map):
-        traverse_map(curr_i - 1, curr_j, local_map, solutions)
-
+        traverse_map(curr_i - 1, curr_j, local_map, solution)
 
     # Check down and recurse.
     if is_traversable(curr_height, curr_i + 1, curr_j, local_map):
-        traverse_map(curr_i + 1, curr_j, local_map, solutions)
+        traverse_map(curr_i + 1, curr_j, local_map, solution)
 
     # Check left and recurse.
     if is_traversable(curr_height, curr_i, curr_j - 1, local_map):
-        traverse_map(curr_i, curr_j - 1, local_map, solutions)
+        traverse_map(curr_i, curr_j - 1, local_map, solution)
 
     # Check right and recurse.
     if is_traversable(curr_height, curr_i, curr_j + 1, local_map):
-        traverse_map(curr_i, curr_j + 1, local_map, solutions)
+        traverse_map(curr_i, curr_j + 1, local_map, solution)
 
-    return solutions
+    return solution
 
 
 def count_map(map):
@@ -132,3 +132,4 @@ def is_traversable(current_height, check_i, check_j, map) -> bool:
 
     # If all tests pass, then the given element is accessible.
     return True
+
