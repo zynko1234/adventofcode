@@ -6,11 +6,6 @@ import click
 
 from util.util import read_file
 
-# # Format strings.
-# PUZZLE_FILE = '{0}/solution'.format(ADVENT_YEAR)
-# ANS_FMT = 'Answer to Puzzle #{0} part {1} is {2}'
-
-
 @click.command()
 @click.argument('year')
 @click.argument('puzzle_number')
